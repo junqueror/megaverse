@@ -34,6 +34,13 @@ npm install -g pnpm
 pnpm install
 ```
 
+3. Finally, copy the [.env.example](.env.example) into a .env file. Replace environment variables accordingly:
+
+```sh
+# Crossmint
+CROSSMINT_CANDIDATE_ID=your-candidate-id
+```
+
 
 ## Phase 1
 

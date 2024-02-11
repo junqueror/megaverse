@@ -22,7 +22,7 @@ class PolyanetsService {
     return result.status === 200;
   };
 
-  // NOTE: I think POST method for creating a polyanet is not well implemented. It should return the created polyanet, but it returns a 200 OK status code with no body.
+  // NOTE: I think POST method for creating a polyanet is not well implemented in API. It should return the created polyanet, but it returns a 200 OK status code with no body.
   // In that case, the method should be like this:
 
   /*
@@ -32,9 +32,28 @@ class PolyanetsService {
       column: position.col
     });
 
-    return result.data;
+    // Create the polyanet in our app
+    return {
+      type: result.data?.type,
+      position: {
+        row: result.data?.row,
+        col: result.data?.column
+      },
+      symbol: astralTypeSymbolMap[result.data?.type]
+    }
   };
    */
+
+  deletePolyanet = async (position: Position): Promise<boolean> => {
+    const result = await this.apiClient.delete(PolyanetsService.paths.polyanets, {
+      data: {
+        row: position.row,
+        column: position.col
+      }
+    });
+
+    return result.status === 200; // NOTE: I think DELETE method for deleting a polyanet should return a 204 No Content status code, but it returns a 200 OK status code.
+  };
 }
 
 const polyanetsService = new PolyanetsService(megaverseApiClient);

@@ -1,10 +1,6 @@
 import { type AxiosInstance } from 'axios';
 import megaverseApiClient from '../base/megaverseApiClient';
-import { AstralMap, AstralObjectType } from '../types';
-import megaverseConfig from '../config/megaverse';
-
-const MAP_ROWS = megaverseConfig.MAP_LAYOUT.ROWS;
-const MAP_COLS = megaverseConfig.MAP_LAYOUT.COLS;
+import { AstralMap, AstralObject, AstralObjectType, astralTypeSymbolMap } from '../types';
 
 class MapService {
   static paths = {
@@ -27,31 +23,35 @@ class MapService {
   getGoalMap = async (candidateId): Promise<AstralMap> => {
     const result = await this.apiClient.get(MapService.paths.goalMap(candidateId));
 
-    return result.data.goal;
+    return this._formatGoalToAstralMap(result.data?.goal || []);
   };
 
-  private _formatContentToAstralMap = (content = []): AstralMap => {
-    const astralMap: AstralMap = new Array(MAP_ROWS)
-      .fill(null).map(() => new Array(MAP_COLS)
-        .fill(AstralObjectType.SPACE));
+  private _formatContentToAstralMap = (content = []): AstralMap => content.map((row, rowIndex) => row.map((_astralObject, colIndex) => {
+    const astralObject = _astralObject || { type: -1 };
 
-    for (let row = 0; row < MAP_ROWS; row++) {
-      for (let col = 0; col < MAP_COLS; col++) {
-        const astralObject = content[row][col] || { type: -1 };
+    // Check if is Polyanet (we only manage Polyanets for now)
+    // I think the API is not consistent,
+    // since /map/:candidateId enpoint is returning 0 as the type of Polyanet, but /map/:candidateId/goal is returning 'POLYANET' as the type of Polyanet
+    // In case of managing more astral types I would use a new type for astral objets, whcih is not the best approach
+    const astralObjectType = astralObject?.type === 0 ? AstralObjectType.POLYANET : AstralObjectType.SPACE; // TODO: Create a map of astral ids to astral types (when more types are added)
 
-        // Check if is Polyanet (we only manage Polyanets for now)
-        if (astralObject?.type === 0) { // I think the API is not consistent,
-          // since /map/:candidateId enpoint is returning 0 as the type of Polyanet, but /map/:candidateId/goal is returning 'POLYANET' as the type of Polyanet
-          // In case of managing more astral types I would use a new type for astral objets, whcih is not the best approach
-          astralMap[row][col] = AstralObjectType.POLYANET;
-        } else {
-          astralMap[row][col] = AstralObjectType.SPACE;
-        }
-      }
-    }
+    return {
+      type: astralObjectType,
+      position: { row: rowIndex, col: colIndex },
+      symbol: astralTypeSymbolMap[astralObjectType]
+    };
+  }));
 
-    return astralMap;
-  };
+  private _formatGoalToAstralMap = (map = []): AstralMap => this._iterateMap(map, (astralObject, row, col) => ({
+    type: astralObject as AstralObjectType,
+    position: { row, col },
+    symbol: astralTypeSymbolMap[astralObject]
+  }));
+
+  private _iterateMap = (
+    map: [][],
+    modfier: (_astro: string, _row, _col) => AstralObject
+  ) : AstralMap => map.map((row, rowIndex) => row.map((astralObject, colIndex) => modfier(astralObject, rowIndex, colIndex)));
 }
 
 const mapService = new MapService(megaverseApiClient);

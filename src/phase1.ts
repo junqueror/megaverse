@@ -4,6 +4,8 @@ dotenv.config();
 
 import crossmintConfig from './config/crossmint';
 import MegaverseGame from './controllers/megaverseGame';
+import Logger from './logger';
+// import SOLUTION_PHASE_1 from './solutionPhase1';
 
 const main = async (): Promise<void> => {
   // Create a new game instance
@@ -11,28 +13,32 @@ const main = async (): Promise<void> => {
   await megaverseGame.init();
 
   // Render the initial map
-  console.log('Initial map:');
-  console.log(megaverseGame.renderMap());
+  Logger.info('Initial map:');
+  Logger.info(megaverseGame.renderMap());
 
   // Render the goal map
   await megaverseGame.getGoalMap();
 
-  console.log('Goal map:');
-  console.log(megaverseGame.renderGoalMap());
+  Logger.info('Goal map:');
+  Logger.info(megaverseGame.renderGoalMap());
 
   // Create the challenge map
-  console.log('Creating a new map...');
-  await megaverseGame.createMap();
+  Logger.info('Creating a new map...');
 
-  // Checking the updated map
-  await megaverseGame.getMap();
+  // from a predefined solution
+  // await megaverseGame.generateMap(SOLUTION_PHASE_1);
 
-  console.log('Updated map:');
-  console.log(megaverseGame.renderMap());
+  // or from the goal map
+  const goalAstralObjects = megaverseGame.getGoalAstralObjects();
+  await megaverseGame.generateMap(goalAstralObjects);
+
+  Logger.info('Updated map:');
+  Logger.info(megaverseGame.renderMap());
 
   // Render the challenge result
-  const result = megaverseGame.checkMap() ? 'Congrats, you are hired!' : 'Sorry, better find another job...';
-  console.log('Challenge result:', result);
+  const isSuccess = megaverseGame.checkMap();
+  if (isSuccess) Logger.success('Congrats, you are hired!');
+  else Logger.error('Sorry, better luck next time!');
 };
 
 main();
