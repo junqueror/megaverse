@@ -20,6 +20,21 @@ For this role, you are not expected to complete the phase 2 of the challenge. In
 
 ## The solution
 
+### Setup
+
+1. First you need `pnpm` to manage dependencies:
+
+```sh
+npm install -g pnpm
+```
+
+2. Then you can install required dependencies with:
+
+```sh
+pnpm install
+```
+
+
 ## Phase 1
 
 ## Phase 2
