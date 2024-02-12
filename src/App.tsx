@@ -1,33 +1,22 @@
-import React, { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '../public/vite.svg';
-import './App.css';
+import React from 'react';
+import siteConfig from './config/site';
+import Phase2Page from './pages/phase2';
 
 function App () {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className='h-full w-screen'>
+        <div className='background fixed z-[-1] size-full'/>
+        <div className='flex h-full flex-col p-32'>
+          <h1 className='text-4xl font-bold'>
+            { siteConfig.TITLE }
+            </h1>
+          <h2 className='text-2xl font-bold'
+          >{ siteConfig.SUBTITLE }
+          </h2>
+          <Phase2Page />
+        </div>
       </div>
-      <h1 className='border text-blue-400 underline'>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   );
 }

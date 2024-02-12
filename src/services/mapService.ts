@@ -1,27 +1,30 @@
 import { type AxiosInstance } from 'axios';
 import megaverseApiClient from '../base/megaverseApiClient';
 import { AstralMap, AstralObject, AstralObjectType, astralTypeSymbolMap } from '../types';
+import crossmintConfig from '../config/crossmint';
 
 class MapService {
-  static paths = {
-    map: (candidateId: string) => `map/${candidateId}`,
-    goalMap: (candidateId: string) => `map/${candidateId}/goal`
+  paths = {
+    map: (candidateId: string = this.candidateId) => `map/${candidateId}`,
+    goalMap: (candidateId: string = this.candidateId) => `map/${candidateId}/goal`
   };
 
   apiClient: AxiosInstance;
+  candidateId: string;
 
-  constructor (apiClient: AxiosInstance) {
+  constructor (apiClient: AxiosInstance, candidateId: string) {
     this.apiClient = apiClient;
+    this.candidateId = candidateId;
   }
 
-  getMap = async (candidateId): Promise<AstralMap> => {
-    const result = await this.apiClient.get(MapService.paths.map(candidateId));
+  getMap = async (): Promise<AstralMap> => {
+    const result = await this.apiClient.get(this.paths.map(this.candidateId));
 
     return this._formatContentToAstralMap(result.data?.map?.content || []);
   };
 
-  getGoalMap = async (candidateId): Promise<AstralMap> => {
-    const result = await this.apiClient.get(MapService.paths.goalMap(candidateId));
+  getGoalMap = async (): Promise<AstralMap> => {
+    const result = await this.apiClient.get(this.paths.goalMap(this.candidateId));
 
     return this._formatGoalToAstralMap(result.data?.goal || []);
   };
@@ -54,7 +57,7 @@ class MapService {
   ) : AstralMap => map.map((row, rowIndex) => row.map((astralObject, colIndex) => modfier(astralObject, rowIndex, colIndex)));
 }
 
-const mapService = new MapService(megaverseApiClient);
+const mapService = new MapService(megaverseApiClient, crossmintConfig.CANDIDATE_ID);
 
 export default MapService;
 export {

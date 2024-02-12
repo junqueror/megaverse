@@ -4,6 +4,7 @@
       "useDefineForClassFields": true,
       "lib": ["ES2020", "DOM", "DOM.Iterable"],
       "skipLibCheck": true,
+      "module": "ESNext",   
   
       /* Bundler mode */
       "moduleResolution": "bundler",
@@ -14,7 +15,7 @@
       "jsx": "react-jsx",
     },
     "include": [
-        "**/*.ts",
+        "**/*.ts", "src/pages/phase2.tsx", "src/components/AstralObject.tsx", "src/components/AstralMap.tsx",
     ],
     "exclude": [
         "node_modules"

@@ -44,7 +44,7 @@ pnpm install
 
 ```sh
 # Crossmint
-CROSSMINT_CANDIDATE_ID=your-candidate-id
+VITE_CROSSMINT_CANDIDATE_ID=your-candidate-id
 ```
 
 
@@ -61,3 +61,12 @@ pnpm run phase1
 > NOTE: The code is prepared to work and solve the phase 1 challenge when the candidate has phase 1 enabled in Megaverse API.
 
 ### Phase 2
+
+A build is already prepared, so to check the final result you can simply run:
+
+
+```sh
+pnpm run phase2
+```
+
+Yoy can check the web interface in [http://localhost:4173/](http://localhost:4173/)
