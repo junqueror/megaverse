@@ -5,12 +5,15 @@ module.exports = {
   },
   plugins: [
     'standard',
-    'import'
+    'import',
+    'react-refresh'
   ],
   extends: [
     'eslint:recommended',
     'standard',
-    'plugin:@typescript-eslint/recommended'
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:tailwindcss/recommended'
   ],
   overrides: [
     {
@@ -25,12 +28,17 @@ module.exports = {
       }
     }
   ],
+  ignorePatterns: ['dist'],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
   rules: {
     semi: 'off',
-    '@typescript-eslint/semi': 'error'
+    '@typescript-eslint/semi': 'error',
+    'react-refresh/only-export-components': [
+      'warn',
+      { allowConstantExport: true }
+    ]
   }
 };
