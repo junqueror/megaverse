@@ -40,7 +40,7 @@ npm install -g pnpm
 pnpm install
 ```
 
-3. Finally, copy the [.env.example](.env.example) into a .env file. Replace environment variables with dessired values:
+3. Finally, copy the [.env.example](.env.example) into a .env file. Replace environment variables with desired values:
 
 ```sh
 # Crossmint
@@ -62,6 +62,8 @@ pnpm run phase1
 
 ### Phase 2
 
+Code solution used to resolve the challengue from phase 1 is in [task/phase2](https://github.com/junqueror/megaverse/tree/task/phase2) branch and [main](https://github.com/junqueror/megaverse) branch.
+
 A build is already prepared, so to check the final result you can simply run:
 
 
@@ -69,4 +71,26 @@ A build is already prepared, so to check the final result you can simply run:
 pnpm run phase2
 ```
 
-Yoy can check the web interface in [http://localhost:4173/](http://localhost:4173/)
+Yoy can check the web interface in [http://localhost:3000/](http://localhost:3000/)
+
+Alternatively you can run the dev mode with:
+
+```sh
+pnpm run dev
+```
+
+Yoy can check the web interface in [http://localhost:3000/](http://localhost:3000/)
+
+> NOTE: The code is prepared to show a web interface to sove challenge when the candidate has phase 2 enabled in Megaverse API.
+
+## The evaluation
+
+Your code will be manually reviewed and evaluated by our engineers based on the criteria below:
+- The code is clean and easy to understand
+- You model the problem properly, including classes / interfaces, extension when applied, etc.
+- You avoid duplication and encourage extension for similar use cases
+- Your logic is properly abstracted in classes (or equivalent), functions, variables, etc.
+- - Your solution is automated (i.e. you don’t manually call the API to create the 100+ entities required for Phase 2)
+You leverage components for the frontend elements to reduce duplication and improve readability
+- Your frontend code is easy to follow, extend and reuse
+- The UI looks pretty. Though no need to make it pixel-perfect! Just generally looking fine is good enough, we don’t want you to spend more time than needed for the evaluation

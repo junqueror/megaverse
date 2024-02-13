@@ -5,6 +5,7 @@ import { AstralMap } from '../../types';
 interface MegaverseContextType {
   astralMap: AstralMap,
   goalMap: AstralMap
+  totalGoalAstralObjects?: number
   fetchAstralMap: () => void
   resetAstralMap: () => void
   shouldShowGoalMap: boolean
@@ -15,6 +16,7 @@ interface MegaverseContextType {
 const defaultState = {
   astralMap: [],
   goalMap: [],
+  totalGoalAstralObjects: undefined,
   fetchAstralMap: () => {},
   resetAstralMap: () => {},
   shouldShowGoalMap: false,

@@ -5,8 +5,8 @@ import { type AstralMap, AstralObjectType, Position, AstralObject, astralTypeSym
 import axios, { AxiosError } from 'axios';
 import { MegaverseGameError, MegaverseApiError } from '../errors/megaverseErrors';
 
-const MAP_ROWS = megaverseConfig.MAP_LAYOUT.ROWS;
-const MAP_COLS = megaverseConfig.MAP_LAYOUT.COLS;
+const MAP_ROWS = megaverseConfig.GAME.MAP_LAYOUT.ROWS;
+const MAP_COLS = megaverseConfig.GAME.MAP_LAYOUT.COLS;
 const INITIAL_DELAY_BETWEEN_REQUESTS = 3; // seconds
 const DELAY_MULTIPLIER_BETWEEN_REQUESTS = 2;
 const MAX_RETRIES_REQUESTS = 10;
@@ -15,12 +15,10 @@ class MegaverseGame {
   static mapService = mapService;
   static polyanetsService = polyanetsService;
 
-  private candidateId: string;
-  private astralMap: AstralMap;
-  private goalMap: AstralMap;
+  astralMap: AstralMap;
+  goalMap: AstralMap;
 
-  constructor (_candidateId: string) {
-    this.candidateId = _candidateId;
+  constructor () {
     this.astralMap = undefined;
     this.goalMap = undefined;
   }

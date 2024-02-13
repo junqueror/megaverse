@@ -9,12 +9,13 @@ interface MegaverseProviderProps {
 
 const MegaverseProvider: FC<MegaverseProviderProps> = ({ children }) => {
   const { astralMap, fetchAstralMap, resetAstralMap } = useAstralMap();
-  const { goalMap } = useGoalMap();
+  const { goalMap, totalGoalAstralObjects } = useGoalMap();
   const [shouldShowGoalMap, setShouldShowGoalMap] = useState(false);
 
   const contextValue: MegaverseContextType = useMemo(() => ({
     astralMap,
     goalMap,
+    totalGoalAstralObjects,
     fetchAstralMap,
     resetAstralMap,
     shouldShowGoalMap,
@@ -23,6 +24,7 @@ const MegaverseProvider: FC<MegaverseProviderProps> = ({ children }) => {
   }), [
     astralMap,
     goalMap,
+    totalGoalAstralObjects,
     fetchAstralMap,
     resetAstralMap,
     shouldShowGoalMap,

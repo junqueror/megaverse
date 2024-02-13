@@ -1,7 +1,7 @@
-import { comethsService, polyanetsService, soloonsService } from '../../services';
-import { type AstralObject } from '../../types';
-import useSWRMutation from 'swr/mutation';
 import useMegaverseContext from '../../contexts/megaverseContext/megaverseContext';
+import { comethsService, polyanetsService, soloonsService } from '../../services';
+import { SoloonColor, type AstralObject } from '../../types';
+import useSWRMutation from 'swr/mutation';
 
 const useAstralObject = (
   astralObject: AstralObject
@@ -43,7 +43,7 @@ const useAstralObject = (
     }
   );
 
-  const createSoloon = createSoloonStatus.trigger;
+  const createSoloon = (color: SoloonColor) => { createSoloonStatus.trigger(color as null); };
   const deleteSoloon = deleteSoloonStatus.trigger;
 
   // Cometh
@@ -62,7 +62,7 @@ const useAstralObject = (
     }
   );
 
-  const createCometh = createComethStatus.trigger;
+  const createCometh = (direction: string) => { createComethStatus.trigger(direction as null); };
   const deleteCometh = deleteComethStatus.trigger;
 
   // Common

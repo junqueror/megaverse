@@ -28,15 +28,12 @@ const useAstralMap = () => {
 
   const astralMap: AstralMap = useMemo(() => data || [], [data]);
 
-  console.log('astramlMap data', data);
-  console.log('astramlMap astralMap', astralMap);
-
   // Reset
 
   // TODO: This is breaking because of 429 errors. One possible solution (path) ws proposed in phase 1, but it should be fixed in backend and also provide a way to reset the map for this feature to work.
-  const resetAstralMap = useCallback(() => astralMap.reduce((allAstralObjects, row) => allAstralObjects.concat(row), [])
+  const resetAstralMap = useCallback(async () => astralMap.reduce((allAstralObjects, row) => allAstralObjects.concat(row), [])
     .filter(astralObject => astralObject.type !== AstralObjectType.SPACE)
-    .forEach(astralObject => astralObjectTypeToService[astralObject.type]?.deleteAstralObject(astralObject.position)),
+    .forEach(async astralObject => await astralObjectTypeToService[astralObject.type]?.deleteAstralObject(astralObject.position)),
   [astralMap]);
 
   return {
