@@ -12,13 +12,13 @@ Your job as the master of the megaverse will be to create one with some given pa
 
 The challenge is composed of 2 phases.
 
-## Phase 1
+### Phase 2
 
  In the first one you will learn how to interact with the API and create some 🪐POLYanets and validate them. 
 
  - [Megaverse API docs](https://challenge.crossmint.io/documentation)
 
-## Phase 2
+### Phase 2
 
 In the second one you will create a bigger megaverse with some peculiar shape.
 
