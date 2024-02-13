@@ -12,13 +12,13 @@ Your job as the master of the megaverse will be to create one with some given pa
 
 The challenge is composed of 2 phases.
 
-## Phase 1
+### Phase 1
 
  In the first one you will learn how to interact with the API and create some 🪐POLYanets and validate them. 
 
  - [Megaverse API docs](https://challenge.crossmint.io/documentation)
 
-## Phase 2
+### Phase 2
 
 In the second one you will create a bigger megaverse with some peculiar shape.
 
@@ -81,7 +81,7 @@ pnpm run dev
 
 Yoy can check the web interface in [http://localhost:3000/](http://localhost:3000/)
 
-> NOTE: The code is prepared to show a web interface to sove challenge when the candidate has phase 2 enabled in Megaverse API.
+> NOTE: The code is prepared to show a web interface to solve challenge when the candidate has phase 2 enabled in Megaverse API.
 
 ## The evaluation
 
@@ -90,7 +90,7 @@ Your code will be manually reviewed and evaluated by our engineers based on the 
 - You model the problem properly, including classes / interfaces, extension when applied, etc.
 - You avoid duplication and encourage extension for similar use cases
 - Your logic is properly abstracted in classes (or equivalent), functions, variables, etc.
-- - Your solution is automated (i.e. you don’t manually call the API to create the 100+ entities required for Phase 2)
+- Your solution is automated (i.e. you don’t manually call the API to create the 100+ entities required for Phase 2)
 You leverage components for the frontend elements to reduce duplication and improve readability
 - Your frontend code is easy to follow, extend and reuse
 - The UI looks pretty. Though no need to make it pixel-perfect! Just generally looking fine is good enough, we don’t want you to spend more time than needed for the evaluation
