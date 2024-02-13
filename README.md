@@ -47,7 +47,7 @@ pnpm install
 CROSSMINT_CANDIDATE_ID=your-candidate-id
 ```
 
-### Phase 1
+### Phase 1
 
 Code solution used to resolve the challengue from phase 1 is in [task/phase1](https://github.com/junqueror/megaverse/tree/task/phase1) branch.
 
