@@ -12,7 +12,7 @@ Your job as the master of the megaverse will be to create one with some given pa
 
 The challenge is composed of 2 phases.
 
-### Phase 2
+### Phase 1
 
  In the first one you will learn how to interact with the API and create some 🪐POLYanets and validate them. 
 
