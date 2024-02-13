@@ -5,7 +5,6 @@ enum AstralObjectType {
   RED_SOLOON = 'RED_SOLOON',
   BLUE_SOLOON = 'BLUE_SOLOON',
   PURPLE_SOLOON = 'PURPLE_SOLOON',
-  PINK_SOLOON = 'PINK_SOLOON',
   RIGHT_COMETH = 'RIGHT_COMETH',
   LEFT_COMETH = 'LEFT_COMETH',
   UP_COMETH = 'UP_COMETH',
@@ -17,7 +16,6 @@ enum AstralObjectSymbol {
   POLYANET = '🪐',
   SOLOON = '🌕',
   COMETH = '☄️',
-
 }
 
 const astralTypeSymbolMap: Record<AstralObjectType, AstralObjectSymbol> = {
@@ -27,7 +25,6 @@ const astralTypeSymbolMap: Record<AstralObjectType, AstralObjectSymbol> = {
   [AstralObjectType.RED_SOLOON]: AstralObjectSymbol.SOLOON,
   [AstralObjectType.BLUE_SOLOON]: AstralObjectSymbol.SOLOON,
   [AstralObjectType.PURPLE_SOLOON]: AstralObjectSymbol.SOLOON,
-  [AstralObjectType.PINK_SOLOON]: AstralObjectSymbol.SOLOON,
   [AstralObjectType.RIGHT_COMETH]: AstralObjectSymbol.COMETH,
   [AstralObjectType.LEFT_COMETH]: AstralObjectSymbol.COMETH,
   [AstralObjectType.UP_COMETH]: AstralObjectSymbol.COMETH,
@@ -45,6 +42,9 @@ type AstralObject = {
   symbol?: AstralObjectSymbol,
 };
 
+type SoloonColor = 'red' | 'blue' | 'purple' | 'white';
+type ComethDirection = 'right' | 'left' | 'up' | 'down';
+
 type AstralMap = AstralObject[][];
 
 export {
@@ -53,5 +53,7 @@ export {
   astralTypeSymbolMap,
   type AstralObject,
   type Position,
+  type SoloonColor,
+  type ComethDirection,
   type AstralMap
 };

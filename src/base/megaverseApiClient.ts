@@ -6,7 +6,8 @@ const megaverseApiClient: AxiosInstance = axios.create({
   baseURL: megaverseConfig.BASE_URL,
   headers: {
     'Content-Type': 'application/json'
-  }
+  },
+  withCredentials: false
 });
 
 // Add a request interceptor

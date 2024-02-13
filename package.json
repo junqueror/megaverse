@@ -7,9 +7,9 @@
   "main": "src/phase1.ts",
   "scripts": {
     "phase1": "ts-node src/phase1.ts",
-    "dev": "vite",
+    "dev": "vite --port 3000",
     "build": "tsc && vite build",
-    "phase2": "vite preview",
+    "phase2": "vite preview --port 3000",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint-fix": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix"
   },
@@ -20,8 +20,7 @@
     "eslint-plugin-tailwindcss": "^3.14.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "swr": "^2.2.4",
-    "vite-plugin-svgr": "^4.2.0"
+    "swr": "^2.2.4"
   },
   "devDependencies": {
     "@types/react": "^18.2.55",

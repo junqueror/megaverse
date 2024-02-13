@@ -10,8 +10,6 @@ const useGoalMap = () => {
 
   const goalMap: AstralMap = data || [];
 
-  console.log('Map', goalMap);
-
   return {
     goalMap,
     error,

@@ -32,7 +32,7 @@ class MegaverseGame {
 
   async getMap (): Promise<AstralMap> {
     try {
-      this.astralMap = await MegaverseGame.mapService.getMap(this.candidateId);
+      this.astralMap = await MegaverseGame.mapService.getMap();
       return this.astralMap;
     } catch (error) {
       this.handleError('Error fetching map', error);
@@ -41,7 +41,7 @@ class MegaverseGame {
 
   async getGoalMap (): Promise<AstralMap> {
     try {
-      this.goalMap = await MegaverseGame.mapService.getGoalMap(this.candidateId);
+      this.goalMap = await MegaverseGame.mapService.getGoalMap();
       return this.goalMap;
     } catch (error) {
       this.handleError('Error fetching goal map', error);
@@ -107,7 +107,7 @@ class MegaverseGame {
     }
 
     // Create the polyanet
-    const result = await MegaverseGame.polyanetsService.createPolyanet(position);
+    const result = await MegaverseGame.polyanetsService.createAstralObject(position);
 
     return result
       ? {
@@ -127,7 +127,7 @@ class MegaverseGame {
     }
 
     // Delete the polyanet
-    const result = await MegaverseGame.polyanetsService.deletePolyanet(position);
+    const result = await MegaverseGame.polyanetsService.deleteAstralObject(position);
 
     return result
       ? {

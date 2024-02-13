@@ -7,6 +7,9 @@ const megaverseConfig = {
   MAP_LAYOUT: {
     ROWS: 30,
     COLS: 36
+  },
+  GAME: {
+    TIME: 60 // seconds
   }
 };
 

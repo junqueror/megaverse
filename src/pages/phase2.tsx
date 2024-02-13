@@ -1,18 +1,21 @@
 import { FC } from 'react';
-import useAstralMap from '../hooks/data/useAstralMap';
-import { AstralMap } from '../components';
-import { useGoalMap } from '../hooks/data';
+import { AstralMap, MegaverseController } from '../components';
+import useMegaverseContext from '../contexts/megaverseContext/megaverseContext';
 
 interface Phase2PageProps {
 }
 
 const Phase2Page: FC<Phase2PageProps> = () => {
-  const { astralMap } = useAstralMap();
-  const { goalMap } = useGoalMap();
+  const { astralMap, goalMap, shouldShowGoalMap } = useMegaverseContext();
+  const mapToShow = shouldShowGoalMap ? goalMap : astralMap;
 
   return (
-    <div className='py-16'>
-      <AstralMap astralMap={ goalMap} />
+    <div className='flex flex-col gap-16 py-16'>
+      <MegaverseController />
+      <AstralMap
+        astralMap={ mapToShow }
+        isDisabled={ shouldShowGoalMap }
+      />
     </div>
   );
 };

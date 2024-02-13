@@ -35,8 +35,10 @@ class MapService {
     // Check if is Polyanet (we only manage Polyanets for now)
     // I think the API is not consistent,
     // since /map/:candidateId enpoint is returning 0 as the type of Polyanet, but /map/:candidateId/goal is returning 'POLYANET' as the type of Polyanet
-    // In case of managing more astral types I would use a new type for astral objets, whcih is not the best approach
-    const astralObjectType = astralObject?.type === 0 ? AstralObjectType.POLYANET : AstralObjectType.SPACE; // TODO: Create a map of astral ids to astral types (when more types are added)
+    // In case of managing more astral types I would use a new type for astral objets, ehich is not the best approach
+
+    // We need to use a map to covert astral object ids (number) to types (string) to standardize the type of astral objects in our app
+    const astralObjectType = this._getAstralObjectType(astralObject);
 
     return {
       type: astralObjectType,
@@ -55,6 +57,31 @@ class MapService {
     map: [][],
     modfier: (_astro: string, _row, _col) => AstralObject
   ) : AstralMap => map.map((row, rowIndex) => row.map((astralObject, colIndex) => modfier(astralObject, rowIndex, colIndex)));
+
+  private _getAstralObjectType ({
+    type,
+    color = '',
+    direction = ''
+  }: {
+    type: number,
+    color: string,
+    direction: string,
+  }) {
+    const astralObjectIdsToTypesMap = {
+      0: 'POLYANET',
+      1: 'SOLOON',
+      2: 'COMETH'
+    };
+
+    let astralObjectType = astralObjectIdsToTypesMap[type] || 'SPACE';
+
+    if (astralObjectType === astralObjectIdsToTypesMap[1]) {
+      astralObjectType = `${color.toUpperCase()}_${astralObjectType}` as AstralObjectType;
+    } else if (astralObjectType === astralObjectIdsToTypesMap[2]) {
+      astralObjectType = `${direction.toUpperCase()}_${astralObjectType}` as AstralObjectType;
+    }
+    return astralObjectType;
+  }
 }
 
 const mapService = new MapService(megaverseApiClient, crossmintConfig.CANDIDATE_ID);

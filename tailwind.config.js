@@ -10,6 +10,9 @@ module.exports = {
         135: '135deg',
         225: '225deg',
         315: '315deg'
+      },
+      animation: {
+        'ping-slow': 'ping 2s cubic-bezier(0, 0, 0.2, 1) infinite'
       }
     }
   },

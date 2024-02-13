@@ -13,10 +13,10 @@ const AstralSoloon: FC<AstralSoloonProps> = ({
   className = ''
 }) => {
   const symbolClasses = clsx({
-    'brightness-95 grayscale': astralObject.type === AstralObjectTypeType.RED_SOLOON,
-    'invert hue-rotate-15': astralObject.type === AstralObjectTypeType.BLUE_SOLOON,
-    'invert hue-rotate-60': astralObject.type === AstralObjectTypeType.PURPLE_SOLOON,
-    'hue-rotate-90 invert': astralObject.type === AstralObjectTypeType.PINK_SOLOON
+    'brightness-95 grayscale': astralObject.type === AstralObjectTypeType.WHITE_SOLOON,
+    'hue-rotate-90 invert': astralObject.type === AstralObjectTypeType.RED_SOLOON,
+    'hue-rotate-15 invert': astralObject.type === AstralObjectTypeType.BLUE_SOLOON,
+    'hue-rotate-60 invert': astralObject.type === AstralObjectTypeType.PURPLE_SOLOON
   });
 
   return (
